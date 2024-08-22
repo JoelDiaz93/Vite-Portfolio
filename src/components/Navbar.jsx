@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { navLinks } from "../constants";
-import { logo, menu, close, code } from "../assets";
+import { menu, close, code } from "../assets";
+import { log } from "three/examples/jsm/nodes/Nodes.js";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -26,7 +27,7 @@ const Navbar = () => {
   return (
     <nav
       className={`$ sm:px-16 px-6 sm:py-16 py-10 w-full flex items-center fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+        scrolled ? "bg-[#1E1B18]" : "bg-transparent"
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -38,9 +39,9 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={code} alt="logo" className="w-9 h-9 object-contain"/>
+          <img src={code} alt="logo" className="w-9 h-9 object-contain" />
           <p className="text-white text-[28px] px-2 font-bold cursor-pointer flex ">
-            Joel Díaz &nbsp;
+            Carlos Díaz &nbsp;
             <span className="sm:block hidden"> | Software Developer</span>
           </p>
         </Link>

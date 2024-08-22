@@ -3,6 +3,7 @@ import {
   backend,
   creator,
   petShop,
+  qrCode,
   web,
   javascript,
   typescript,
@@ -214,6 +215,29 @@ const projects = [
     ],
     image: petShop,
     source_code_link: "https://github.com/JoelDiaz93/Project-Mascotas",
+    public_link:"https://mascotas-c83e9.web.app/",
+  },
+  {
+    name: "QR code generator",
+    description:
+      "Web-based platform that allows users to create and download QR codes for links quickly and efficiently.",
+    tags: [
+      {
+        name: "NextJS",
+        color: "text-blue-500",
+      },
+      {
+        name: "Framer Motion",
+        color: "text-White-600",
+      },
+      {
+        name: "Tailwind CSS",
+        color: "text-cyan-700",
+      },
+    ],
+    image: qrCode,
+    source_code_link: "https://github.com/JoelDiaz93/Nextjs-QR_Code_Generator",
+    public_link:"https://nextjs-qr-code-generator-one.vercel.app/",
   }
 ];
 
