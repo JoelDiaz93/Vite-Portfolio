@@ -8,7 +8,7 @@ import Contact from "./components/Contact";
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-[#1E1B18] relative z-0">
+      <div className="bg-[#1E1B18] absolute">
         <div className="bg-cover bg-center">
           <Navbar />
           <Hero />

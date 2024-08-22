@@ -45,7 +45,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative z-0 h-screen mt-28 p-10">
+    <div className="relative w-full min-h-screen mt-14 lg:mt-28 p-10">
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] w-full mx-auto bg-black-100 p-8 rounded-2xl"

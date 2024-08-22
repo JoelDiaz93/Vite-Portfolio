@@ -22,19 +22,19 @@ const ProjectCard = ({
         tiltMaxAngleY={45}
         scale={1}
         transitionSpeed={450}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+        className="p-4 rounded-2xl sm:w-[360px] w-full"
       >
-        <div className="relative w-full h-[230px]">
+        <div className="relative w-full h-[180px] lg:h-[240px]">
           <img
             src={image}
             alt="project_image"
-            className="w-full h-full object-cover rounded-2xl"
+            className="w-full h-full object-fill lg:object-cover rounded-2xl"
           />
 
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
+          <div className="absolute inset-0 flex justify-end m-1">
             <div
               onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+              className="black-gradient w-16 h-16 rounded-full flex justify-center items-center cursor-pointer"
             >
               <img
                 src={github}
@@ -45,21 +45,21 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <div className="mt-5">
+        <div className="mt-4">
           <div className="flex justify-between">
-            <h3 className="text-white font-bold text-[24px]">{name}</h3>
+            <h3 className="text-white font-bold text-xl lg:text-4xl">{name}</h3>
             <button
-              className="bg-[#99C24D] hover:bg-black py-2 px-4 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
+              className="bg-[#99C24D] hover:bg-black lg:py-2 px-4 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
               onClick={() => window.open(public_link, "_blank")}
             >
               Go
             </button>
           </div>
 
-          <p className="mt-2 text-lg text-justify">{description}</p>
+          <p className="mt-1 lg:mt-2 text-lg text-justify">{description}</p>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-2 lg:mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
             <p key={`${name}-${tag.name}`} className={`text-md ${tag.color}`}>
               #{tag.name}
@@ -73,7 +73,7 @@ const ProjectCard = ({
 
 const Works = () => {
   return (
-    <div className="relative z-0 h-screen mt-28 p-10">
+    <div className="relative w-full min-h-screen mt-14 lg:mt-28 p-10">
       <motion.div variants={textVariant()}>
         <h2 className="">Projects</h2>
       </motion.div>
@@ -81,7 +81,7 @@ const Works = () => {
       <div className="w-full flex">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
-          className="mt-3 text-4xl max-w-6xl text-justify"
+          className="mt-3 text-2xl lg:text-4xl max-w-6xl text-justify"
         >
           Following projects showcases my skills and experience through
           real-world examples of my work. Each project is briefly described with
@@ -91,7 +91,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-7">
+      <div className="mt-5 lg:mt-20 flex flex-wrap gap-7">
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}

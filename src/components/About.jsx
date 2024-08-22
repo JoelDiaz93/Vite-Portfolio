@@ -22,7 +22,7 @@ const ServiceCard = ({ index, title, icon }) => (
           scale: 1,
           speed: 450,
         }}
-        className="rounded-[20px] py-5 px-4 min-h-[280px] flex justify-evenly items-center flex-col"
+        className="rounded-[20px] py-1 lg:py-4 px-4 min-h-[100px] lg:min-h-[280px] flex justify-evenly items-center flex-col"
       >
         <img
           src={icon}
@@ -30,7 +30,7 @@ const ServiceCard = ({ index, title, icon }) => (
           className="w-16 h-16 object-contain"
         />
 
-        <h3 className="text-white text-[20px] font-bold text-center">
+        <h3 className="text-white text-lg lg:text-xl font-bold text-center">
           {title}
         </h3>
       </div>
@@ -40,7 +40,7 @@ const ServiceCard = ({ index, title, icon }) => (
 
 const About = () => {
   return (
-    <div className="relative z-0 h-screen mt-28 p-10">
+    <div className="relative w-full h-screen mt-14 lg:mt-28 p-10">
       <motion.div variants={textVariant()}>
         <h2 className="">Overview</h2>
       </motion.div>
@@ -48,7 +48,7 @@ const About = () => {
       <div className="w-full flex">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
-          className="mt-3 text-4xl max-w-6xl text-justify"
+          className="mt-3 text-2xl lg:text-4xl max-w-6xl text-justify"
         >
           I'm a skilled software developer with experience in frameworks like
           React, Node.js, and Three.js. I'm a quick learner and collaborate
@@ -57,7 +57,7 @@ const About = () => {
           your ideas to life!
         </motion.p>
       </div>
-      <div className="mt-20 flex justify-between flex-wrap gap-7">
+      <div className="mt-1 lg:mt-0 flex justify-between flex-wrap lg:gap-4">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
