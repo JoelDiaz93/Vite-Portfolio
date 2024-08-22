@@ -50,7 +50,7 @@ const ProjectCard = ({
             <h3 className="text-white font-bold text-[24px]">{name}</h3>
             <button
               className="bg-[#99C24D] hover:bg-black py-2 px-4 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
-              onClick={() => window.open(project_link, "_blank")}
+              onClick={() => window.open(public_link, "_blank")}
             >
               Go
             </button>
