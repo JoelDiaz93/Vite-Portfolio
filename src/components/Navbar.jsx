@@ -51,7 +51,7 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`${
-                active === nav.title ? "text-[#D7DEDC]" : "text-secondary"
+                active === nav.title ? "text-[#21ABF5]" : "text-[#D7DEDC]"
               } hover:text-[#FF4000] text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
@@ -73,12 +73,12 @@ const Navbar = () => {
               !toggle ? "hidden" : "flex"
             } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
           >
-            <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
+            <ul className="list-none bg-[#1E1B18] p-4 rounded-xl flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins text-white font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-green-500" : "text-secondary"
+                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                    active === nav.title ? "text-[#21ABF5]" : "text-[#D7DEDC]"
                   }`}
                   onClick={() => {
                     setToggle(!toggle);
