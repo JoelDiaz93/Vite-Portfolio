@@ -17,16 +17,16 @@ p {
 h1 {
   color: #21ABF5;
   font-family: "Roboto";
-  font-size: 60px;
+  font-size: 68px;
   font-weight: bolder;
   line-height: 1.1;
 }
 
 h2 {
   color: #FF4000;
-  font-family: "Archivo Black", sans-serif;
+  font-family: "New+Amsterdam", sans-serif;
   font-size: 40px;
-  font-weight: bolder;
+  font-weight: 800;
 }
 
 @media screen and (max-width: 1024px) {
@@ -38,12 +38,22 @@ h2 {
   }
 }
 
-@media screen and (max-width: 360px) {
+@media only screen and (max-width: 460px) {
   h1 {
     font-family: "Roboto";
-    font-size: 32px;
+    font-size: 34px;
     text-align: center;
-    font-weight: bolder;
-    padding-top: 40px;
+    font-weight: 500;
+    padding-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 460px) and (max-width: 768px) {
+  h1 {
+    font-family: "Roboto";
+    font-size: 46px;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 20px;
   }
 }
