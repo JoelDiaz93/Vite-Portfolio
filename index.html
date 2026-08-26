@@ -1,10 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carlos Diaz </title>
+    <meta name="theme-color" content="#0a0d0c" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Carlos Díaz is a Software Engineer focused on backend systems, cloud platforms, full-stack products, data and production engineering." />
+    <meta name="keywords" content="Software Engineer, Backend Developer, Cloud Engineer, Full Stack Developer, .NET, Node.js, Go, AWS, React, TypeScript, Ecuador" />
+    <meta name="author" content="Carlos Díaz" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Carlos Díaz | Software Engineer · Backend · Cloud · Product" />
+    <meta property="og:description" content="Backend systems, cloud-native products and full-stack engineering — from architecture to production." />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Carlos Díaz | Software Engineer" />
+    <meta name="twitter:description" content="Backend systems, cloud-native products and full-stack engineering — from architecture to production." />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <script>
+      (() => {
+        const saved = localStorage.getItem("portfolio-theme");
+        const theme = saved === "light" || saved === "dark" ? saved : (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.background = theme === "light" ? "#f5f2eb" : "#0a0d0c";
+      })();
+    </script>
+    <title>Carlos Díaz | Software Engineer · Backend · Cloud · Product</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Carlos Díaz",
+        "jobTitle": "Software Engineer",
+        "sameAs": ["https://github.com/JoelDiaz93"],
+        "knowsAbout": ["Backend Engineering", "Cloud Computing", "Full Stack Development", "Microservices", "AWS", ".NET", "Node.js", "Go", "React", "TypeScript", "Data Engineering"]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
