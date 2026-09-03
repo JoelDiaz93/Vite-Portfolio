@@ -1,13 +1,13 @@
 {
   "name": "carlos-diaz-software-engineer-portfolio",
   "private": true,
-  "version": "3.12.2",
+  "version": "3.13.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/generate-seo-pages.mjs && vite build",
     "preview": "vite preview",
-    "verify:portfolio": "node scripts/generate-seo-pages.mjs && node scripts/verify-v312.mjs"
+    "verify:portfolio": "node scripts/generate-seo-pages.mjs && node scripts/verify-v313.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",

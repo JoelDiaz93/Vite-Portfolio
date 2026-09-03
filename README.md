@@ -1,14 +1,21 @@
-# Carlos Díaz Portfolio v3.12
+# Carlos Díaz Portfolio v3.13
 
-Portfolio bilingüe (EN/ES) orientado a Software Engineering, backend, cloud, product engineering y servicios freelance.
+Portfolio bilingüe (EN/ES) orientado a Software Engineering, Backend, Cloud, sistemas distribuidos, Full Stack, Data & AI y Banca / Finanzas.
 
-## Qué cambia en v3.12
+## Qué cambia en v3.13
 
 
+- Professional Value positioning:
+  - nueva sección **Valor profesional** inmediatamente después del Hero;
+  - 9+ años de ingeniería de software y 4+ años en Banca / Finanzas como señales de trayectoria;
+  - cuatro pilares: Backend & Arquitectura, Cloud/DevOps/Reliability, Full Stack & Producto, Data/AI/Automation;
+  - métricas de stress específicas de RouteFast regresan al case study, donde tienen contexto;
+  - Hero y structured data amplían visibilidad de Full Stack, CI/CD, Data & AI, Azure/GCP y frontend;
+  - terminología profesional Banca / Finanzas (Banking & Finance) estandarizada.
 - Recruiter conversion & SEO:
   - CV web bilingüe en `/en/resume` y `/es/resume`;
   - CV PDF profesionales descargables en inglés y español;
-  - franja de evidencia con 9+ años, 4+ años en contexto financiero/bancario y señales medibles de RouteFast;
+  - posicionamiento profesional con trayectoria, capacidades y case studies verificables;
   - enlaces a CV desde Hero, Contacto y Footer;
   - OpenGraph 1200×630 para portfolio, RouteFast y Eventra;
   - JSON-LD Person + WebSite + ProfilePage;

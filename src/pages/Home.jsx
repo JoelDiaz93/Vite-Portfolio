@@ -8,5 +8,5 @@ import Freelance from "../components/Freelance";
 import Contact from "../components/Contact";
 
 export default function Home() {
-  return <><Hero /><About /><Results /><Experience /><Projects /><Skills /><Freelance /><Contact /></>;
+  return <><Hero /><Results /><About /><Experience /><Projects /><Skills /><Freelance /><Contact /></>;
 }

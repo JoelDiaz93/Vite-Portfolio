@@ -4745,3 +4745,221 @@ html[data-theme="light"] .landing-availability {
     flex-direction: column;
   }
 }
+
+/* ========================================================================== 
+   v3.13 — professional value positioning
+   ========================================================================== */
+
+.professional-value-band {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 12% 16%, color-mix(in srgb, var(--sage) 8%, transparent), transparent 28%),
+    color-mix(in srgb, var(--surface) 48%, transparent);
+}
+
+.professional-value-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(34px, 5vw, 72px);
+  align-items: start;
+  padding-top: clamp(58px, 7vw, 92px);
+  padding-bottom: clamp(58px, 7vw, 92px);
+}
+
+.professional-value-intro {
+  min-width: 0;
+  position: sticky;
+  top: 104px;
+}
+
+.professional-value-intro h2 {
+  max-width: 590px;
+  margin: 10px 0 18px;
+  color: var(--paper);
+  font: 500 clamp(34px, 3.4vw, 54px)/1.01 "Newsreader", serif;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+
+.professional-value-copy {
+  max-width: 590px;
+  margin: 0;
+  color: var(--paper-soft);
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.72;
+}
+
+.professional-value-signals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.professional-value-signal {
+  min-width: 0;
+  padding: 16px 17px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+}
+
+.professional-value-signal strong {
+  display: block;
+  color: var(--sage);
+  font: 600 clamp(22px, 2.4vw, 30px)/1 "Newsreader", serif;
+  letter-spacing: -.025em;
+}
+
+.professional-value-signal span {
+  display: block;
+  margin-top: 7px;
+  color: var(--paper-soft);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.professional-value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+.professional-value-card {
+  min-width: 0;
+  min-height: 292px;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 2.6vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.professional-value-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--sage) 32%, var(--line));
+  background: color-mix(in srgb, var(--surface) 96%, var(--sage) 4%);
+}
+
+.professional-value-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.professional-value-number {
+  color: var(--muted);
+  font: 500 9px "DM Mono", monospace;
+}
+
+.professional-value-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--sage) 25%, var(--line));
+  border-radius: 12px;
+  color: var(--sage);
+  background: color-mix(in srgb, var(--sage) 6%, transparent);
+}
+
+.professional-value-kicker {
+  margin: 24px 0 7px !important;
+  color: var(--copper-bright) !important;
+  font: 600 9px/1.35 "DM Mono", monospace !important;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.professional-value-card h3 {
+  margin: 0 0 11px;
+  color: var(--paper);
+  font-size: clamp(18px, 1.6vw, 23px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
+.professional-value-card > p:not(.professional-value-kicker) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.professional-value-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.professional-value-tags span {
+  max-width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--paper-soft);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  font: 500 9px/1 "DM Mono", monospace;
+  white-space: normal;
+}
+
+@media (max-width: 1060px) {
+  .professional-value-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .professional-value-intro {
+    position: static;
+  }
+
+  .professional-value-copy,
+  .professional-value-intro h2 {
+    max-width: 760px;
+  }
+
+  .professional-value-signals {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 720px) {
+  .professional-value-layout {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .professional-value-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .professional-value-card {
+    min-height: 0;
+  }
+
+  .professional-value-intro h2 {
+    font-size: clamp(36px, 10vw, 48px);
+  }
+}
+
+@media (max-width: 480px) {
+  .professional-value-signals {
+    grid-template-columns: 1fr;
+  }
+
+  .professional-value-card {
+    padding: 20px;
+  }
+
+  .professional-value-tags {
+    gap: 6px;
+  }
+}
