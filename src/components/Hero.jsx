@@ -1,100 +1,59 @@
-import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import AnimatedText from "./AnimatedText";
-import EarthCanvas from "./canvas/Earth";
+import { useMemo } from "react";
+import { useSite } from "../context/SiteContext";
+import { siteContent } from "../data/portfolio";
+import Icon from "./Icon";
+import SoftwareJourney from "./SoftwareJourney";
 
-const Hero = () => {
-  const [replay, setReplay] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
-
-  const placeholderText = [
-    {
-      type: "heading1",
-      text: "Turning ideas into exceptional software solutions.",
-    },
-  ];
-
-  const container = {
-    visible: {
-      transition: {
-        staggerChildren: 0.025,
-      },
-    },
-  };
-
-  const handleReplay = () => {
-    setReplay(!replay);
-    setTimeout(() => {
-      setReplay(true);
-    }, 600);
-  };
+export default function Hero() {
+  const { language } = useSite();
+  const { hero, common } = useMemo(() => siteContent[language], [language]);
 
   return (
-    <section className="relative w-full h-screen">
-      <div className="absolute inset-0 top-[90px] lg:max-w-7xl mx-auto flex flex-row items-center gap-5">
-        <div className="container w-full mx-auto">
-          <div className="flex flex-wrap items-center">
-            <div className="flex-1 p-1 h-40 w-[300px] lg:h-80">
-              <EarthCanvas />
-            </div>
-            <div className="flex-2 lg:flex-1 w-full p-8 sm:my-10">
-              <motion.div
-                className="App"
-                initial="hidden"
-                // animate="visible"
-                animate={replay ? "visible" : "hidden"}
-              >
-                <div className="flex flex-col" onClick={handleReplay}>
-                  {placeholderText.map((item, index) => {
-                    return <AnimatedText {...item} key={index} />;
-                  })}
-                </div>
-              </motion.div>
+    <section className="hero" id="top">
+      <div className="hero-noise" />
+      <div className="hero-grid" />
+      <div className="shell hero-layout hero-layout-v31">
+        <motion.div className="hero-copy" initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
+          <div className="availability"><span /> {hero.availability}</div>
+          <p className="hero-overline">{hero.overline}</p>
+          <h1 dangerouslySetInnerHTML={{ __html: hero.title }} />
+          <p className="hero-lead">{hero.lead}</p>
+
+          <div className="hero-actions">
+            <a className="button button-primary" href="#projects">{common.exploreWork} <Icon name="arrow" /></a>
+            <a className="button button-ghost" href="#contact">{common.discussProject}</a>
+          </div>
+
+          <div className="hero-metrics">
+            {hero.metrics.map((item, index) => (
+              <article key={item.label} className="hero-metric">
+                <Icon name={["briefcase", "code", "user"][index]} size={21} />
+                <div><strong>{item.value}</strong><span>{item.label}</span></div>
+              </article>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div className="hero-journey-wrap" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .72, delay: .12 }}>
+          <SoftwareJourney data={hero.journey} />
+          <div className="hero-stack-row">
+            <span>{hero.focusLabel}</span>
+            <div className="hero-stack-chips">
+              {hero.focus.map((item) => <b key={item}>{item}</b>)}
+              <b className="hero-more">+ {hero.moreLabel}</b>
             </div>
           </div>
+        </motion.div>
+      </div>
+
+      <div className="hero-lower shell">
+        <div className="hero-meta">
+          <a href="https://github.com/JoelDiaz93" target="_blank" rel="noreferrer"><Icon name="github" /> GitHub</a>
+          <span>Quito · Remote / Hybrid</span>
         </div>
       </div>
-
-      <div className="absolute xs:bottom-8 bottom-12 w-full flex justify-center items-center">
-        <a href="">
-          <div className="w-[28px] h-[50px] md:w-[35px] md:h-[64px] rounded-3xl border-2 md:border-4 border-[#D7DEDC] flex justify-center items-start p-2">
-            <motion.div
-              animate={{
-                y: isMobile ? [0, 10, 0] : [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className="w-1 h-1 md:w-3 md:h-3 rounded-full bg-[#D7DEDC]"
-            />
-          </div>
-        </a>
-      </div>
+      <div className="hero-marquee" aria-hidden="true"><div className="hero-marquee-track"><span>{hero.marquee}</span><span>{hero.marquee}</span><span>{hero.marquee}</span></div></div>
     </section>
   );
-};
-
-export default Hero;
+}

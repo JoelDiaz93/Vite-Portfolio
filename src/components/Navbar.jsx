@@ -1,99 +1,75 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { navLinks } from "../constants";
-import { menu, close, code } from "../assets";
-import { log } from "three/examples/jsm/nodes/Nodes.js";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSite } from "../context/SiteContext";
+import { siteContent } from "../data/portfolio";
 
-const Navbar = () => {
-  const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { language, setLanguage, theme, toggleTheme } = useSite();
+  const content = useMemo(() => siteContent[language], [language]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setCompact(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const goSection = (id) => {
+    setOpen(false);
+    const homePath = `/${language}`;
+    if (location.pathname !== homePath) {
+      navigate(`${homePath}#${id}`);
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const switchLanguage = () => {
+    const next = language === "en" ? "es" : "en";
+    setLanguage(next);
+    const suffix = location.pathname.replace(/^\/(en|es)/, "") || "";
+    navigate(`/${next}${suffix}${location.hash || ""}`);
+    setOpen(false);
+  };
+
   return (
-    <nav
-      className={`$ sm:px-16 px-6 sm:py-16 py-10 w-full flex items-center fixed top-0 z-20 ${
-        scrolled ? "bg-[#1E1B18]" : "bg-transparent"
-      }`}
-    >
-      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-        <Link
-          to="/"
-          className="flex items-center gap-2"
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
-        >
-          <img src={code} alt="logo" className="w-9 h-9 object-contain" />
-          <p className="text-white text-[28px] px-2 font-bold cursor-pointer flex ">
-            Carlos Díaz &nbsp;
-            <span className="sm:block hidden"> | Software Developer</span>
-          </p>
+    <header className={`site-nav ${compact ? "is-compact" : ""}`}>
+      <div className="nav-inner">
+        <Link className="brand" to={`/${language}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Carlos Díaz home">
+          <span className="brand-mark">CD</span>
+          <span className="brand-copy">
+            <strong>Carlos Díaz</strong>
+            <small>{language === "es" ? "Ingeniero de Software" : "Software Engineer"}</small>
+          </span>
         </Link>
 
-        <ul className="list-none hidden sm:flex text-white flex-row gap-10">
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title ? "text-[#21ABF5]" : "text-[#D7DEDC]"
-              } hover:text-[#FF4000] text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
+        <nav className={`nav-links ${open ? "is-open" : ""}`} aria-label="Primary navigation">
+          {content.navLinks.map((item) => (
+            <button key={item.id} type="button" onClick={() => goSection(item.id)}>{item.title}</button>
           ))}
-        </ul>
-
-        <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain"
-            onClick={() => setToggle(!toggle)}
-          />
-
-          <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
-          >
-            <ul className="list-none bg-[#1E1B18] p-4 rounded-xl flex justify-end items-start flex-1 flex-col gap-4">
-              {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-[#21ABF5]" : "text-[#D7DEDC]"
-                  }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
-                >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </li>
-              ))}
-            </ul>
+          <div className="nav-controls">
+            <button type="button" className="pill-control language-control" onClick={switchLanguage} aria-label={content.common.language}>
+              <span className={language === "en" ? "is-active" : ""}>EN</span>
+              <i />
+              <span className={language === "es" ? "is-active" : ""}>ES</span>
+            </button>
+            <button type="button" className="pill-control theme-control" onClick={toggleTheme} aria-label="Toggle theme">
+              <span className="theme-symbol">{theme === "dark" ? "☾" : "☀"}</span>
+              <span>{theme === "dark" ? content.common.themeDark : content.common.themeLight}</span>
+            </button>
           </div>
-        </div>
-      </div>
-    </nav>
-  );
-};
+          <button type="button" className="nav-cta" onClick={() => goSection("contact")}>{content.common.startConversation}</button>
+        </nav>
 
-export default Navbar;
+        <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
+          <span />
+          <span />
+        </button>
+      </div>
+    </header>
+  );
+}

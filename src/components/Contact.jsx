@@ -1,106 +1,75 @@
-import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { SectionWrapper } from "../hoc";
-import { slideIn } from "../utils/motion";
-import { log } from "three/examples/jsm/nodes/Nodes.js";
+import { useSite } from "../context/SiteContext";
+import { siteContent } from "../data/portfolio";
+import Icon from "./Icon";
+import SectionHeading from "./SectionHeading";
 
-const Contact = () => {
-  const form = useRef();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+export default function Contact() {
+  const { language } = useSite();
+  const { contact } = useMemo(() => siteContent[language], [language]);
+  const [formData, setFormData] = useState({ name: "", email: "", intent: contact.labels.options[0], message: "" });
+  const [state, setState] = useState("idle");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
+  useEffect(() => {
+    setFormData((current) => ({ ...current, intent: contact.labels.options[0] }));
+  }, [contact.labels.options]);
 
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_SERVICE_ID,
-        import.meta.env.VITE_APP_TEMPLATE_ID,
-        formData,
-        import.meta.env.VITE_APP_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          console.log("SUCCESS!");
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
-    setLoading(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setState("loading");
+    const serviceId = import.meta.env.VITE_APP_SERVICE_ID;
+    const templateId = import.meta.env.VITE_APP_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_APP_PUBLIC_KEY;
+    if (!serviceId || !templateId || !publicKey) {
+      setState("config-error");
+      return;
+    }
+    try {
+      await emailjs.send(serviceId, templateId, formData, publicKey);
+      setState("success");
+      setFormData({ name: "", email: "", intent: contact.labels.options[0], message: "" });
+    } catch (error) {
+      console.error("Contact form error", error);
+      setState("error");
+    }
   };
 
   return (
-    <div className="relative w-full min-h-screen mt-14 lg:mt-28 p-10">
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] w-full mx-auto bg-black-100 p-8 rounded-2xl"
-      >
-        <h2 className="">Contact</h2>
-
-        <form
-          ref={form}
-          onSubmit={handleSubmit}
-          className="mt-12 flex flex-col gap-8"
-        >
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Name</span>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="What's your good name?"
-              className="py-4 px-6 text-black rounded-lg outline-none border-none font-medium"
-            />
-          </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your email</span>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="What's your web address?"
-              className="py-4 px-6 text-black rounded-lg outline-none border-none font-medium"
-            />
-          </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Message</span>
-            <textarea
-              rows={7}
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="What you want to say?"
-              className="py-4 px-6 text-black rounded-lg outline-none border-none font-medium"
-            />
-          </label>
-
-          <button
-            type="submit"
-            className={`${loading ? "bg-[#1E1B18]" : "bg-[#99C24D]" } py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary`}
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
-        </form>
-      </motion.div>
-    </div>
+    <section className="section contact-section" id="contact">
+      <div className="shell">
+        <SectionHeading {...contact.heading} />
+        <div className="contact-grid">
+          <div className="contact-aside">
+            {contact.aside.map((item, index) => (
+              <div key={item.title} className="contact-signal">
+                <Icon name={["briefcase", "spark", "mail"][index]} size={28} />
+                <div><strong>{item.title}</strong><p>{item.text}</p></div>
+              </div>
+            ))}
+          </div>
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-row">
+              <label>{contact.labels.name}<input required name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder={contact.labels.namePlaceholder} /></label>
+              <label>{contact.labels.email}<input required type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder={contact.labels.emailPlaceholder} /></label>
+            </div>
+            <label>{contact.labels.intent}
+              <select name="intent" value={formData.intent} onChange={(e) => setFormData({ ...formData, intent: e.target.value })}>
+                {contact.labels.options.map((option) => <option key={option}>{option}</option>)}
+              </select>
+            </label>
+            <label>{contact.labels.message}<textarea required rows="6" name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder={contact.labels.messagePlaceholder} /></label>
+            <div className="form-footer">
+              <button className="button button-primary" disabled={state === "loading"} type="submit">{state === "loading" ? contact.labels.sending : contact.labels.send} <Icon name="arrow" /></button>
+              <div className="form-status" role="status" aria-live="polite">
+                {state === "success" && contact.labels.success}
+                {state === "error" && contact.labels.error}
+                {state === "config-error" && contact.labels.config}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   );
-};
-
-export default SectionWrapper(Contact, "contact");
+}
