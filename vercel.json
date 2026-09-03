@@ -5,9 +5,18 @@
     "deploymentEnabled": false
   },
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/en", "destination": "/seo-pages/home-en.html" },
+    { "source": "/es", "destination": "/seo-pages/home-es.html" },
+    { "source": "/en/projects/eventra", "destination": "/seo-pages/eventra-en.html" },
+    { "source": "/es/projects/eventra", "destination": "/seo-pages/eventra-es.html" },
+    { "source": "/en/projects/routefast", "destination": "/seo-pages/routefast-en.html" },
+    { "source": "/es/projects/routefast", "destination": "/seo-pages/routefast-es.html" },
+    { "source": "/en/projects/qrflow", "destination": "/seo-pages/qrflow-en.html" },
+    { "source": "/es/projects/qrflow", "destination": "/seo-pages/qrflow-es.html" },
+    { "source": "/en/projects/cerynt", "destination": "/seo-pages/cerynt-en.html" },
+    { "source": "/es/projects/cerynt", "destination": "/seo-pages/cerynt-es.html" },
+    { "source": "/en/resume", "destination": "/seo-pages/resume-en.html" },
+    { "source": "/es/resume", "destination": "/seo-pages/resume-es.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

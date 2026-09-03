@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import EventraCaseStudy from "./pages/EventraCaseStudy";
 import ProjectCaseStudy from "./pages/ProjectCaseStudy";
+import ResumePage from "./pages/ResumePage";
 import { SiteProvider, useSite } from "./context/SiteContext";
 import { siteContent } from "./data/portfolio";
 
@@ -58,30 +59,46 @@ function MetaManager() {
 
   useEffect(() => {
     const content = siteContent[language];
+    document.documentElement.lang = language;
     const projectSlug = location.pathname.match(/\/projects\/([^/]+)/)?.[1];
+    const isResume = /\/resume\/?$/.test(location.pathname);
     const projectContent = projectSlug === "eventra" ? content.eventra : content.projectCases?.[projectSlug];
-    document.title = projectContent?.pageTitle || content.meta.title;
+    const pageContent = isResume ? content.resume : projectContent;
+    document.title = pageContent?.pageTitle || content.meta.title;
 
-    const descriptionText = projectContent?.metaDescription || content.meta.description;
+    const descriptionText = pageContent?.metaDescription || content.meta.description;
     const description = document.querySelector('meta[name="description"]');
     if (description) description.setAttribute("content", descriptionText);
 
+    const ogType = document.querySelector('meta[property="og:type"]');
+    if (ogType) ogType.setAttribute("content", projectSlug || isResume ? "article" : "profile");
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) ogTitle.setAttribute("content", document.title);
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if (ogDescription) ogDescription.setAttribute("content", descriptionText);
     const ogLocale = document.querySelector('meta[property="og:locale"]');
     if (ogLocale) ogLocale.setAttribute("content", language === "es" ? "es_EC" : "en_US");
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", window.location.href.split("#")[0]);
 
     const twitterTitle = document.querySelector('meta[name="twitter:title"]');
     if (twitterTitle) twitterTitle.setAttribute("content", document.title);
     const twitterDescription = document.querySelector('meta[name="twitter:description"]');
     if (twitterDescription) twitterDescription.setAttribute("content", descriptionText);
 
+    const imagePath = ["routefast", "eventra", "qrflow", "cerynt"].includes(projectSlug) ? `/og/${projectSlug}.png` : "/og/portfolio.png";
+    const absoluteImage = `${window.location.origin}${imagePath}`;
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) ogImage.setAttribute("content", absoluteImage);
+    const twitterImage = document.querySelector('meta[name="twitter:image"]');
+    if (twitterImage) twitterImage.setAttribute("content", absoluteImage);
+    const ogImageAlt = document.querySelector('meta[property="og:image:alt"]');
+    if (ogImageAlt) ogImageAlt.setAttribute("content", projectSlug ? `${pageContent?.title || "Carlos Díaz"} · Carlos Díaz portfolio` : "Carlos Díaz · Software Engineer · Backend · Cloud · Distributed Systems");
+
     const themeColor = document.querySelector('meta[name="theme-color"]');
     if (themeColor) themeColor.setAttribute("content", theme === "dark" ? "#0E1411" : "#F2F3F0");
 
-    const suffix = projectSlug ? `/projects/${projectSlug}` : "";
+    const suffix = isResume ? "/resume" : projectSlug ? `/projects/${projectSlug}` : "";
     const origin = window.location.origin;
     upsertLink("canonical", null, `${origin}/${language}${suffix}`);
     upsertLink("alternate", "en", `${origin}/en${suffix}`);
@@ -104,6 +121,7 @@ function AppShell() {
           <Route path="/" element={<RootRedirect />} />
           <Route path="/projects/eventra" element={<LegacyEventraRedirect />} />
           <Route path="/:lang" element={<LocaleSync><Home /></LocaleSync>} />
+          <Route path="/:lang/resume" element={<LocaleSync><ResumePage /></LocaleSync>} />
           <Route path="/:lang/projects/eventra" element={<LocaleSync><EventraCaseStudy /></LocaleSync>} />
           <Route path="/:lang/projects/:projectSlug" element={<LocaleSync><ProjectCaseStudy /></LocaleSync>} />
           <Route path="*" element={<RootRedirect />} />

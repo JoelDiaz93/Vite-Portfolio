@@ -18,6 +18,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const onResize = () => {
+      if (window.innerWidth > 1060) setOpen(false);
+    };
+
+    document.body.classList.toggle("nav-open", open);
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize, { passive: true });
+
+    return () => {
+      document.body.classList.remove("nav-open");
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [open]);
+
   const goSection = (id) => {
     setOpen(false);
     const homePath = `/${language}`;
@@ -47,7 +66,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className={`nav-links ${open ? "is-open" : ""}`} aria-label="Primary navigation">
+        <nav id="primary-navigation" className={`nav-links ${open ? "is-open" : ""}`} aria-label="Primary navigation">
           {content.navLinks.map((item) => (
             <button key={item.id} type="button" onClick={() => goSection(item.id)}>{item.title}</button>
           ))}
@@ -65,7 +84,7 @@ export default function Navbar() {
           <button type="button" className="nav-cta" onClick={() => goSection("contact")}>{content.common.startConversation}</button>
         </nav>
 
-        <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Toggle navigation">
+        <button className={`menu-button ${open ? "is-open" : ""}`} type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="primary-navigation" aria-label="Toggle navigation">
           <span />
           <span />
         </button>

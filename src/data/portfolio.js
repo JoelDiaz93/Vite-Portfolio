@@ -1,8 +1,8 @@
 export const siteContent = {
   en: {
     meta: {
-      title: "Carlos Díaz | Software Engineer Portfolio",
-      description: "Portfolio of Carlos Díaz, software engineer focused on backend systems, cloud delivery, product engineering and freelance software solutions.",
+      title: "Carlos Díaz | Software Engineer · Backend · Cloud · Distributed Systems",
+      description: "Carlos Díaz is a software engineer with 9+ years of experience across backend systems, cloud delivery, financial software, distributed systems and production engineering.",
     },
     navLinks: [
       { id: "about", title: "About" },
@@ -27,10 +27,13 @@ export const siteContent = {
       themeLight: "Light",
       themeDark: "Dark",
       language: "Language",
+      resume: "Resume",
+      downloadResume: "Download resume",
+      viewResume: "View resume",
     },
     hero: {
       availability: "Available for the right engineering role and selected freelance projects",
-      overline: "SOFTWARE ENGINEER · BACKEND · CLOUD · FREELANCE",
+      overline: "SOFTWARE ENGINEER · BACKEND · CLOUD · DISTRIBUTED SYSTEMS",
       title: "Software engineering from <em>idea</em> to <em>delivery</em>.",
       lead: "I build backend systems and cloud-native solutions that integrate data, automate processes and turn requirements into reliable products that can be operated and evolved with confidence.",
       focusLabel: "Core stack",
@@ -39,7 +42,7 @@ export const siteContent = {
       metrics: [
         { value: "9+ years", label: "building and evolving software" },
         { value: "Full stack", label: "backend, cloud, data and product delivery" },
-        { value: "EN / ES", label: "clear communication in English and Spanish" },
+        { value: "Production", label: "banking, APIs and distributed systems" },
       ],
       journey: {
         eyebrow: "My approach",
@@ -72,6 +75,18 @@ export const siteContent = {
         { key: "product", eyebrow: "Technology in context", label: "Full-stack product work", description: "Frontend and backend delivered as one product so user experience, data and architecture remain coherent." },
         { key: "problem-solving", eyebrow: "Useful under pressure", label: "Technical problem solving", description: "Incident analysis, debugging and pragmatic decisions when production constraints, deadlines and integrations collide." },
       ],
+    },
+    results: {
+      eyebrow: "Proof in numbers",
+      title: "A few signals that make the profile easier to evaluate.",
+      copy: "These are intentionally concrete: years of delivery, domain context and evidence from a distributed-systems project rather than a generic list of technologies.",
+      items: [
+        { value: "9+ years", label: "software delivery", detail: "From client requirements and product builds to production support." },
+        { value: "4+ years", label: "financial & banking software", detail: "Financial applications, banking integrations, cloud workflows and incident support." },
+        { value: "5 services", label: "distributed architecture", detail: "RouteFast separates Order, Driver, Dispatch, Tracking and the API edge." },
+        { value: "0% HTTP failures", label: "post-optimization stress run", detail: "Same local stress profile after isolating and reducing a measured hot-path cost." },
+      ],
+      note: "Performance figures are local engineering evidence, not a production-capacity claim.",
     },
     experience: {
       heading: {
@@ -149,7 +164,7 @@ export const siteContent = {
         copy: "The goal is to make each project easy to understand even without a technical background: what problem it addresses, what was built, what I contributed and what capability it demonstrates.",
       },
       guide: "The categories indicate project depth, not importance. Case studies explain architecture and decisions; product builds show end-to-end execution; architecture-in-progress work shows how I structure complex platforms before unnecessary distributed-system cost.",
-      classification: ["Flagship case study", "Product build", "Architecture in progress", "Focused technical build"],
+      classification: ["Flagship case study", "Distributed systems case study", "Product build", "Architecture in progress", "Focused technical build"],
       labels: { problem: "Problem / need", role: "My contribution", demonstrates: "What it demonstrates" },
       items: [
         {
@@ -168,6 +183,23 @@ export const siteContent = {
           download: "https://eventra.pages.dev/download",
           detail: "/projects/eventra",
           featured: true,
+        },
+        {
+          slug: "routefast",
+          tier: "Distributed systems case study",
+          category: "Last-mile logistics · Microservices · Observability",
+          status: "Live cloud demo",
+          name: "RouteFast",
+          kicker: "Failure-aware delivery orchestration, driver scoring and live routing",
+          description: "A distributed last-mile logistics platform that coordinates orders, drivers, dispatch, tracking and route optimization across independently persisted services with idempotency, retries, compensation and observability.",
+          problem: "How to coordinate concurrent delivery operations without duplicate assignments, lost events or inconsistent state when APIs, queues and services fail partially.",
+          role: "Architecture, NestJS microservices, DDD/CQRS boundaries, RabbitMQ and Redis workflows, PostgreSQL/PostGIS persistence, idempotency and resilience, observability, load testing, React operations console and cloud deployment.",
+          demonstrates: "Distributed backend engineering with at-least-once delivery, outbox/inbox, saga compensation, geospatial tracking, route optimization, performance profiling, failure handling and live operations tooling.",
+          tags: ["NestJS", "TypeScript", "RabbitMQ", "Redis", "PostgreSQL", "PostGIS", "React", "OpenTelemetry", "Docker", "Cloud Run"],
+          source: "https://github.com/JoelDiaz93/RouteFast",
+          live: "https://routefast-lc3ptt5efq-ue.a.run.app/",
+          detail: "/projects/routefast",
+          visual: "routefast",
         },
         {
           slug: "qrflow",
@@ -221,6 +253,95 @@ export const siteContent = {
       ],
     },
     projectCases: {
+      routefast: {
+        pageTitle: "RouteFast Case Study | Carlos Díaz — Software Engineer",
+        metaDescription: "RouteFast case study: distributed last-mile logistics platform built with NestJS, RabbitMQ, Redis, PostgreSQL/PostGIS, React, OpenTelemetry, Docker and Google Cloud Run.",
+        visual: "routefast",
+        tier: "Distributed systems case study",
+        category: "Last-mile logistics · Microservices · Observability",
+        status: "Live cloud demo",
+        title: "RouteFast",
+        subtitle: "A distributed logistics platform designed around concurrency, partial failure and operational visibility.",
+        lead: "RouteFast coordinates orders, drivers, dispatch decisions, live GPS and route planning across independently owned services. The core challenge is not drawing a route: it is preserving correct delivery state when requests are retried, messages are delivered more than once and dependencies fail at different moments.",
+        heroTags: ["NestJS", "TypeScript", "RabbitMQ", "Redis", "PostgreSQL", "PostGIS", "React", "OpenTelemetry", "Docker", "Cloud Run"],
+        meta: ["Personal systems project", "Microservice boundaries", "Failure-aware workflows", "Measured performance"],
+        links: {
+          source: "https://github.com/JoelDiaz93/RouteFast",
+          live: "https://routefast-lc3ptt5efq-ue.a.run.app/",
+        },
+        overview: {
+          number: "01",
+          eyebrow: "System problem",
+          title: "Last-mile orchestration becomes a consistency problem as soon as operations happen concurrently.",
+          cards: [
+            { icon: "layers", label: "Challenge", title: "Concurrent delivery state", text: "Orders, drivers and dispatch decisions evolve independently while requests can be retried and messages can arrive more than once or out of order." },
+            { icon: "architecture", label: "Approach", title: "Explicit service boundaries", text: "Order, Driver, Dispatch and Tracking own their data and coordinate through versioned events, idempotent consumers and compensation instead of shared persistence." },
+            { icon: "code", label: "My contribution", title: "Architecture to operations", text: "I designed the distributed workflow, implemented NestJS services and resilience patterns, built the operations console, measured saturation under load and deployed the public cloud demo." },
+          ],
+        },
+        architecture: {
+          number: "02",
+          eyebrow: "Architecture",
+          title: "Independent services coordinate through explicit contracts instead of shared tables.",
+          items: [
+            { name: "Operations edge", tech: "React · API Gateway · Socket.IO", note: "One operational surface exposes orders, fleet, dispatch decisions, live tracking, route planning and API diagnostics." },
+            { name: "Domain services", tech: "NestJS · DDD · CQRS", note: "Order, Driver, Dispatch and Tracking keep application and domain rules separated from NestJS and persistence concerns." },
+            { name: "Asynchronous backbone", tech: "RabbitMQ · Outbox/Inbox · BullMQ", note: "Versioned integration events use at-least-once delivery, bounded retries and idempotent processing rather than pretending to provide exactly-once behavior." },
+            { name: "Data ownership", tech: "PostgreSQL · PostGIS · Redis GEO", note: "Each service owns its relational data; Tracking combines Redis for current positions with PostGIS for durable geospatial history." },
+            { name: "Operations & delivery", tech: "OpenTelemetry · Prometheus · Grafana · Jaeger · Docker · Cloud Run", note: "Logs, metrics, traces, load tests and repeatable container delivery make the system observable from local development to the public demo." },
+          ],
+        },
+        workflow: {
+          number: "03",
+          eyebrow: "Dispatch lifecycle",
+          title: "A delivery moves through a failure-aware workflow instead of one long synchronous transaction.",
+          intro: "The workflow is designed so retries and partial failures can be handled without assigning the same order twice or leaving capacity reserved indefinitely.",
+          items: [
+            { title: "Create order", icon: "code", text: "An idempotency key protects the public create request and persists the order in PENDING_DISPATCH." },
+            { title: "Publish event", icon: "upload", text: "The outbox emits order.ready_for_dispatch.v1 without coupling the HTTP transaction to RabbitMQ availability." },
+            { title: "Score candidates", icon: "chart", text: "Dispatch ranks eligible drivers using distance, remaining capacity, current load and GPS freshness." },
+            { title: "Reserve driver", icon: "lock", text: "Driver Service applies transactional locking and a unique order reservation so concurrent requests cannot reserve the same work twice." },
+            { title: "Track live", icon: "monitor", text: "GPS updates use Redis GEO for hot state and asynchronous PostGIS persistence for durable history and ETA queries." },
+            { title: "Plan route", icon: "arrow", text: "RouteFast orders pickup/dropoff stops with capacity constraints and the UI overlays the resulting sequence on a road geometry for operations." },
+          ],
+        },
+        decisions: {
+          number: "04",
+          eyebrow: "Engineering decisions",
+          title: "Reliability decisions are explicit because distributed failure is part of the normal operating model.",
+          intro: "The architecture is intentionally pragmatic: distributed where the problem benefits from independent ownership, defensive where delivery semantics can duplicate work, and measurable where performance assumptions matter.",
+          items: [
+            { title: "At-least-once plus idempotency", problem: "RabbitMQ can redeliver and consumers can crash after performing work but before acknowledging a message.", decision: "Use consumer inbox/idempotency, unique business constraints and bounded retry/DLQ behavior instead of claiming exactly-once processing.", result: "Repeated delivery becomes an expected condition that does not create duplicate business outcomes." },
+            { title: "Database per service", problem: "Shared tables make independently deployed services coordinate through hidden data coupling.", decision: "Give Order, Driver, Dispatch and Tracking explicit persistence ownership and communicate through APIs/events.", result: "Domain boundaries remain visible and changes do not depend on cross-service joins." },
+            { title: "Synchronous calls protected by resilience", problem: "Dispatch still needs timely answers from Driver and Tracking during candidate selection and reservation.", decision: "Keep those calls bounded by timeouts and circuit breakers while long-running state propagation remains event-driven.", result: "A degraded dependency fails quickly instead of consuming the whole request budget or cascading indefinitely." },
+            { title: "Measure before tuning", problem: "A local stress run saturated badly and initially produced timeouts, dropped work and high p95 latency.", decision: "Capture a reproducible baseline, isolate synchronous access logging as a hot-path cost, change one variable and rerun the same stress profile.", result: "The second run reached 0% HTTP failures, materially fewer dropped iterations and much lower latency, producing an evidence-based performance story rather than an unverified capacity claim." },
+          ],
+        },
+        proof: {
+          number: "05",
+          eyebrow: "What this demonstrates",
+          title: "RouteFast is evidence of distributed-system thinking beyond endpoint implementation.",
+          items: [
+            { icon: "shield", title: "Failure-aware design", text: "Idempotency, retries, DLQs, circuit breakers, compensation and transaction-level reservation rules are part of the business workflow." },
+            { icon: "chart", title: "Measured performance", text: "Smoke, idempotency, mixed-load and stress scenarios were used to identify saturation, test a hypothesis and quantify the effect of an optimization." },
+            { icon: "monitor", title: "Operational product surface", text: "The React console makes queues, assignments, scoring, live GPS, route decisions and API behavior inspectable instead of hiding the architecture behind Swagger." },
+            { icon: "cloud", title: "Cloud delivery", text: "The demo is containerized and publicly deployed on Google Cloud Run while managed PostgreSQL, RabbitMQ and Redis keep infrastructure replaceable through configuration." },
+          ],
+        },
+        technologies: {
+          number: "06",
+          eyebrow: "Technology choices",
+          title: "Tools selected around service ownership, asynchronous work, geospatial state and operability.",
+          groups: {
+            "Backend & architecture": ["NestJS", "TypeScript", "DDD", "CQRS", "REST", "Socket.IO"],
+            "Messaging & resilience": ["RabbitMQ", "Outbox/Inbox", "BullMQ", "Idempotency", "Circuit breaker", "Retry / DLQ"],
+            "Data & geospatial": ["PostgreSQL", "PostGIS", "Redis", "Redis GEO", "Transactional locking"],
+            "Observability & performance": ["OpenTelemetry", "Prometheus", "Grafana", "Jaeger", "k6", "Structured logging"],
+            "Frontend & delivery": ["React", "Vite", "Leaflet", "Docker", "Google Cloud Run", "Neon", "CloudAMQP", "Upstash"],
+          },
+        },
+        cta: { title: "Need a backend or distributed workflow that has to stay correct under retries, concurrency and partial failure?" },
+      },
       qrflow: {
         pageTitle: "QRFlow Case Study | Carlos Díaz — Software Engineer",
         metaDescription: "QRFlow case study: dynamic QR SaaS product built with Next.js, ASP.NET Core, PostgreSQL, JWT, Docker and Azure-oriented delivery.",
@@ -462,9 +583,22 @@ export const siteContent = {
         success: "Message sent. I’ll get back to you soon.", error: "The message could not be sent. Please try again.", config: "Contact delivery is not configured in this deployment.",
       },
     },
-    footer: { title: "Carlos Díaz", subtitle: "Software Engineer · Backend · Cloud · Product", backToTop: "Back to top ↑" },
+    resume: {
+      pageTitle: "Carlos Díaz Resume | Software Engineer · Backend · Cloud",
+      metaDescription: "Resume of Carlos Díaz, software engineer with 9+ years of experience across backend systems, cloud delivery, financial software and distributed systems.",
+      eyebrow: "Recruiter-ready profile",
+      title: "Software engineering experience, evidence and selected systems in one place.",
+      lead: "A concise web resume for recruiters and engineering leaders, with downloadable PDF versions in English and Spanish.",
+      currentDownload: "/resume/Carlos-Diaz-Software-Engineer-EN.pdf",
+      alternateDownload: "/resume/Carlos-Diaz-Software-Engineer-ES.pdf",
+      currentLabel: "Download English PDF",
+      alternateLabel: "Download Spanish PDF",
+      sections: { experience: "Experience", evidence: "Evidence", skills: "Core capabilities", projects: "Selected work" },
+    },
+    footer: { title: "Carlos Díaz", subtitle: "Software Engineer · Backend · Cloud · Distributed Systems", backToTop: "Back to top ↑", contact: "Contact", resume: "Resume" },
     eventra: {
       pageTitle: "Eventra Case Study | Carlos Díaz — Software Engineer",
+      metaDescription: "Eventra case study: privacy-first Windows telemetry with a native C++ agent, Go API, PostgreSQL, SvelteKit and cloud delivery.",
       tier: "Flagship case study",
       category: "Systems engineering · privacy-first telemetry",
       subtitle: "A Windows and cloud telemetry platform built around explicit sessions, minimum data collection and transparent delivery.",
@@ -544,8 +678,8 @@ export const siteContent = {
 
   es: {
     meta: {
-      title: "Carlos Díaz | Portafolio de Ingeniero de Software",
-      description: "Portafolio de Carlos Díaz, ingeniero de software enfocado en backend, cloud, producto y soluciones freelance.",
+      title: "Carlos Díaz | Ingeniero de Software · Backend · Cloud · Sistemas Distribuidos",
+      description: "Carlos Díaz es ingeniero de software con 9+ años de experiencia en backend, cloud, software financiero, sistemas distribuidos y soporte productivo.",
     },
     navLinks: [
       { id: "about", title: "Perfil" },
@@ -570,10 +704,13 @@ export const siteContent = {
       themeLight: "Claro",
       themeDark: "Oscuro",
       language: "Idioma",
+      resume: "CV",
+      downloadResume: "Descargar CV",
+      viewResume: "Ver CV",
     },
     hero: {
       availability: "Disponible para el rol adecuado y proyectos freelance seleccionados",
-      overline: "INGENIERO DE SOFTWARE · BACKEND · CLOUD · FREELANCE",
+      overline: "INGENIERO DE SOFTWARE · BACKEND · CLOUD · SISTEMAS DISTRIBUIDOS",
       title: "Ingeniería de software desde la <em>idea</em> hasta la <em>entrega</em>.",
       lead: "Construyo sistemas backend y soluciones cloud-native que integran datos, automatizan procesos y convierten requerimientos en productos confiables que se pueden operar y evolucionar con claridad.",
       focusLabel: "Stack principal",
@@ -582,7 +719,7 @@ export const siteContent = {
       metrics: [
         { value: "9+ años", label: "construyendo y evolucionando software" },
         { value: "Full stack", label: "backend, cloud, datos y entrega de producto" },
-        { value: "EN / ES", label: "comunicación clara en inglés y español" },
+        { value: "Producción", label: "banca, APIs y sistemas distribuidos" },
       ],
       journey: {
         eyebrow: "Mi enfoque",
@@ -615,6 +752,18 @@ export const siteContent = {
         { key: "product", eyebrow: "Tecnología con contexto", label: "Producto full stack", description: "Frontend y backend entregados como un solo producto para mantener coherentes la experiencia, los datos y la arquitectura." },
         { key: "problem-solving", eyebrow: "Útil bajo presión", label: "Resolución técnica", description: "Análisis de incidentes, debugging y decisiones pragmáticas cuando se cruzan producción, plazos e integraciones." },
       ],
+    },
+    results: {
+      eyebrow: "Evidencia en números",
+      title: "Señales concretas para evaluar el perfil con rapidez.",
+      copy: "La intención es mostrar experiencia, contexto de dominio y evidencia técnica verificable, no simplemente acumular tecnologías.",
+      items: [
+        { value: "9+ años", label: "entrega de software", detail: "Desde requerimientos de cliente y productos hasta soporte productivo." },
+        { value: "4+ años", label: "software financiero y banca", detail: "Aplicaciones financieras, integraciones bancarias, cloud y resolución de incidentes." },
+        { value: "5 servicios", label: "arquitectura distribuida", detail: "RouteFast separa Order, Driver, Dispatch, Tracking y el API edge." },
+        { value: "0% fallos HTTP", label: "stress post-optimización", detail: "Mismo perfil local de stress después de aislar y reducir un costo medido del hot path." },
+      ],
+      note: "Las cifras de performance son evidencia local de ingeniería, no una afirmación de capacidad productiva.",
     },
     experience: {
       heading: {
@@ -692,7 +841,7 @@ export const siteContent = {
         copy: "La intención es que cada proyecto se entienda incluso sin un perfil técnico: qué necesidad atiende, qué se construyó, cuál fue mi contribución y qué capacidad demuestra.",
       },
       guide: "Las categorías indican profundidad, no importancia. Los casos de estudio explican arquitectura y decisiones; los productos muestran ejecución end-to-end; los trabajos de arquitectura en progreso muestran cómo estructuro plataformas complejas antes de introducir costos distribuidos innecesarios.",
-      classification: ["Caso de estudio principal", "Producto completo", "Arquitectura en progreso", "Build técnico enfocado"],
+      classification: ["Caso de estudio principal", "Caso de estudio de sistemas distribuidos", "Producto completo", "Arquitectura en progreso", "Build técnico enfocado"],
       labels: { problem: "Problema / necesidad", role: "Mi contribución", demonstrates: "Qué demuestra" },
       items: [
         {
@@ -711,6 +860,23 @@ export const siteContent = {
           download: "https://eventra.pages.dev/download",
           detail: "/projects/eventra",
           featured: true,
+        },
+        {
+          slug: "routefast",
+          tier: "Caso de estudio de sistemas distribuidos",
+          category: "Logística de última milla · Microservicios · Observabilidad",
+          status: "Demo cloud en vivo",
+          name: "RouteFast",
+          kicker: "Orquestación tolerante a fallos, scoring de conductores y rutas en vivo",
+          description: "Una plataforma distribuida de logística de última milla que coordina órdenes, conductores, despacho, tracking y optimización de rutas entre servicios con persistencia independiente, idempotencia, reintentos, compensación y observabilidad.",
+          problem: "Cómo coordinar operaciones de entrega concurrentes sin asignaciones duplicadas, eventos perdidos ni estados inconsistentes cuando APIs, colas o servicios fallan parcialmente.",
+          role: "Arquitectura, microservicios NestJS, límites DDD/CQRS, flujos RabbitMQ y Redis, persistencia PostgreSQL/PostGIS, idempotencia y resiliencia, observabilidad, pruebas de carga, consola operacional React y despliegue cloud.",
+          demonstrates: "Ingeniería backend distribuida con entrega at-least-once, outbox/inbox, compensación saga, tracking geoespacial, optimización de rutas, profiling de rendimiento, manejo de fallos y tooling operacional en vivo.",
+          tags: ["NestJS", "TypeScript", "RabbitMQ", "Redis", "PostgreSQL", "PostGIS", "React", "OpenTelemetry", "Docker", "Cloud Run"],
+          source: "https://github.com/JoelDiaz93/RouteFast",
+          live: "https://routefast-lc3ptt5efq-ue.a.run.app/",
+          detail: "/projects/routefast",
+          visual: "routefast",
         },
         {
           slug: "qrflow",
@@ -764,6 +930,95 @@ export const siteContent = {
       ],
     },
     projectCases: {
+      routefast: {
+        pageTitle: "Caso de estudio RouteFast | Carlos Díaz — Ingeniero de Software",
+        metaDescription: "Caso de estudio RouteFast: plataforma distribuida de logística de última milla construida con NestJS, RabbitMQ, Redis, PostgreSQL/PostGIS, React, OpenTelemetry, Docker y Google Cloud Run.",
+        visual: "routefast",
+        tier: "Caso de estudio de sistemas distribuidos",
+        category: "Logística de última milla · Microservicios · Observabilidad",
+        status: "Demo cloud en vivo",
+        title: "RouteFast",
+        subtitle: "Una plataforma logística distribuida diseñada alrededor de concurrencia, fallos parciales y visibilidad operacional.",
+        lead: "RouteFast coordina órdenes, conductores, decisiones de despacho, GPS en vivo y planificación de rutas entre servicios con ownership independiente. El reto principal no es dibujar una ruta: es conservar un estado correcto cuando una petición se reintenta, un mensaje llega más de una vez o una dependencia falla en un punto diferente del flujo.",
+        heroTags: ["NestJS", "TypeScript", "RabbitMQ", "Redis", "PostgreSQL", "PostGIS", "React", "OpenTelemetry", "Docker", "Cloud Run"],
+        meta: ["Proyecto personal de sistemas", "Límites por microservicio", "Workflows tolerantes a fallos", "Rendimiento medido"],
+        links: {
+          source: "https://github.com/JoelDiaz93/RouteFast",
+          live: "https://routefast-lc3ptt5efq-ue.a.run.app/",
+        },
+        overview: {
+          number: "01",
+          eyebrow: "Problema del sistema",
+          title: "La última milla se convierte en un problema de consistencia apenas las operaciones ocurren en paralelo.",
+          cards: [
+            { icon: "layers", label: "Reto", title: "Estado concurrente", text: "Órdenes, conductores y decisiones de despacho evolucionan de forma independiente mientras las peticiones pueden reintentarse y los mensajes llegar repetidos o fuera de orden." },
+            { icon: "architecture", label: "Enfoque", title: "Límites explícitos", text: "Order, Driver, Dispatch y Tracking son dueños de sus datos y coordinan mediante eventos versionados, consumidores idempotentes y compensación, no mediante persistencia compartida." },
+            { icon: "code", label: "Mi contribución", title: "De arquitectura a operación", text: "Diseñé el workflow distribuido, implementé servicios NestJS y patrones de resiliencia, construí la consola operacional, medí saturación bajo carga y desplegué la demo pública en cloud." },
+          ],
+        },
+        architecture: {
+          number: "02",
+          eyebrow: "Arquitectura",
+          title: "Servicios independientes coordinan contratos explícitos en lugar de compartir tablas.",
+          items: [
+            { name: "Borde operacional", tech: "React · API Gateway · Socket.IO", note: "Una única superficie permite operar órdenes, flota, decisiones de despacho, tracking en vivo, rutas y diagnóstico de APIs." },
+            { name: "Servicios de dominio", tech: "NestJS · DDD · CQRS", note: "Order, Driver, Dispatch y Tracking separan reglas de aplicación y dominio de NestJS y de la persistencia." },
+            { name: "Backbone asíncrono", tech: "RabbitMQ · Outbox/Inbox · BullMQ", note: "Eventos de integración versionados usan entrega at-least-once, reintentos acotados y procesamiento idempotente en lugar de prometer exactly-once." },
+            { name: "Ownership de datos", tech: "PostgreSQL · PostGIS · Redis GEO", note: "Cada servicio posee sus datos relacionales; Tracking combina Redis para posiciones actuales y PostGIS para historial geoespacial durable." },
+            { name: "Operación y entrega", tech: "OpenTelemetry · Prometheus · Grafana · Jaeger · Docker · Cloud Run", note: "Logs, métricas, trazas, pruebas de carga y entrega repetible en contenedores hacen observable el sistema desde local hasta la demo pública." },
+          ],
+        },
+        workflow: {
+          number: "03",
+          eyebrow: "Ciclo de despacho",
+          title: "Una entrega avanza mediante un workflow tolerante a fallos, no como una transacción síncrona extensa.",
+          intro: "El flujo está diseñado para que reintentos y fallos parciales no asignen una misma orden dos veces ni dejen capacidad reservada indefinidamente.",
+          items: [
+            { title: "Crear orden", icon: "code", text: "Una clave de idempotencia protege la petición pública y persiste la orden en PENDING_DISPATCH." },
+            { title: "Publicar evento", icon: "upload", text: "El outbox emite order.ready_for_dispatch.v1 sin acoplar la transacción HTTP a la disponibilidad inmediata de RabbitMQ." },
+            { title: "Puntuar candidatos", icon: "chart", text: "Dispatch ordena conductores elegibles por distancia, capacidad restante, carga actual y vigencia del GPS." },
+            { title: "Reservar conductor", icon: "lock", text: "Driver Service aplica locking transaccional y una reserva única por orden para impedir duplicados ante concurrencia." },
+            { title: "Tracking en vivo", icon: "monitor", text: "Las posiciones GPS usan Redis GEO como estado caliente y persistencia asíncrona en PostGIS para historial y consultas ETA." },
+            { title: "Planificar ruta", icon: "arrow", text: "RouteFast ordena paradas pickup/dropoff respetando capacidad y la UI superpone esa secuencia sobre geometría vial para operación." },
+          ],
+        },
+        decisions: {
+          number: "04",
+          eyebrow: "Decisiones de ingeniería",
+          title: "La confiabilidad es explícita porque el fallo distribuido forma parte del modelo normal de operación.",
+          intro: "La arquitectura busca pragmatismo: distribución donde aporta ownership independiente, defensas donde la semántica puede duplicar trabajo y medición donde las suposiciones de rendimiento deben probarse.",
+          items: [
+            { title: "At-least-once más idempotencia", problem: "RabbitMQ puede redeliver y un consumidor puede caer después de ejecutar trabajo pero antes de confirmar el mensaje.", decision: "Usar inbox/idempotencia de consumidor, constraints únicos de negocio y retry/DLQ acotados en lugar de afirmar procesamiento exactly-once.", result: "La entrega repetida pasa a ser una condición esperada que no duplica el resultado de negocio." },
+            { title: "Base de datos por servicio", problem: "Tablas compartidas hacen que servicios independientes se coordinen mediante un acoplamiento de datos oculto.", decision: "Dar ownership explícito de persistencia a Order, Driver, Dispatch y Tracking y comunicarlos por APIs/eventos.", result: "Los límites de dominio permanecen visibles y los cambios no dependen de joins entre servicios." },
+            { title: "Sincronía protegida por resiliencia", problem: "Dispatch todavía necesita respuestas oportunas de Driver y Tracking durante selección y reserva.", decision: "Limitar esas llamadas con timeouts y circuit breakers mientras la propagación de estado de mayor duración permanece event-driven.", result: "Una dependencia degradada falla rápido en lugar de consumir todo el presupuesto de la petición o generar una cascada indefinida." },
+            { title: "Medir antes de optimizar", problem: "Una ejecución local de stress saturó severamente con timeouts, trabajo descartado y p95 elevado.", decision: "Capturar una línea base reproducible, aislar el access logging síncrono como costo del hot path, cambiar una sola variable y repetir el mismo stress.", result: "La segunda corrida obtuvo 0% de fallos HTTP, muchos menos dropped iterations y latencias muy inferiores, produciendo evidencia medible en lugar de una afirmación de capacidad no verificada." },
+          ],
+        },
+        proof: {
+          number: "05",
+          eyebrow: "Qué demuestra",
+          title: "RouteFast demuestra criterio de sistemas distribuidos más allá de implementar endpoints.",
+          items: [
+            { icon: "shield", title: "Diseño tolerante a fallos", text: "Idempotencia, reintentos, DLQ, circuit breakers, compensación y reglas transaccionales de reserva forman parte del workflow de negocio." },
+            { icon: "chart", title: "Rendimiento medido", text: "Escenarios smoke, idempotency, mixed-load y stress permitieron identificar saturación, probar una hipótesis y cuantificar el efecto de una optimización." },
+            { icon: "monitor", title: "Superficie operacional", text: "La consola React hace visibles colas, asignaciones, scoring, GPS, rutas y comportamiento de APIs en lugar de ocultar la arquitectura detrás de Swagger." },
+            { icon: "cloud", title: "Entrega cloud", text: "La demo está containerizada y desplegada públicamente en Google Cloud Run mientras PostgreSQL, RabbitMQ y Redis gestionados permanecen reemplazables por configuración." },
+          ],
+        },
+        technologies: {
+          number: "06",
+          eyebrow: "Tecnologías",
+          title: "Herramientas elegidas alrededor de ownership, trabajo asíncrono, estado geoespacial y operación.",
+          groups: {
+            "Backend y arquitectura": ["NestJS", "TypeScript", "DDD", "CQRS", "REST", "Socket.IO"],
+            "Mensajería y resiliencia": ["RabbitMQ", "Outbox/Inbox", "BullMQ", "Idempotencia", "Circuit breaker", "Retry / DLQ"],
+            "Datos y geoespacial": ["PostgreSQL", "PostGIS", "Redis", "Redis GEO", "Locking transaccional"],
+            "Observabilidad y rendimiento": ["OpenTelemetry", "Prometheus", "Grafana", "Jaeger", "k6", "Structured logging"],
+            "Frontend y entrega": ["React", "Vite", "Leaflet", "Docker", "Google Cloud Run", "Neon", "CloudAMQP", "Upstash"],
+          },
+        },
+        cta: { title: "¿Necesitas un backend o workflow distribuido que deba mantenerse correcto ante reintentos, concurrencia y fallos parciales?" },
+      },
       qrflow: {
         pageTitle: "Caso de estudio QRFlow | Carlos Díaz — Ingeniero de Software",
         metaDescription: "Caso de estudio QRFlow: producto SaaS de QR dinámicos construido con Next.js, ASP.NET Core, PostgreSQL, JWT, Docker y entrega orientada a Azure.",
@@ -1005,9 +1260,22 @@ export const siteContent = {
         success: "Mensaje enviado. Te responderé pronto.", error: "No se pudo enviar el mensaje. Inténtalo nuevamente.", config: "El envío de contacto no está configurado en este despliegue.",
       },
     },
-    footer: { title: "Carlos Díaz", subtitle: "Ingeniero de Software · Backend · Cloud · Producto", backToTop: "Volver arriba ↑" },
+    resume: {
+      pageTitle: "CV de Carlos Díaz | Ingeniero de Software · Backend · Cloud",
+      metaDescription: "CV de Carlos Díaz, ingeniero de software con 9+ años de experiencia en backend, cloud, software financiero y sistemas distribuidos.",
+      eyebrow: "Perfil listo para recruiters",
+      title: "Experiencia, evidencia y sistemas seleccionados en un solo lugar.",
+      lead: "Un CV web conciso para recruiters y líderes de ingeniería, con versiones PDF descargables en español e inglés.",
+      currentDownload: "/resume/Carlos-Diaz-Software-Engineer-ES.pdf",
+      alternateDownload: "/resume/Carlos-Diaz-Software-Engineer-EN.pdf",
+      currentLabel: "Descargar PDF en español",
+      alternateLabel: "Descargar PDF en inglés",
+      sections: { experience: "Experiencia", evidence: "Evidencia", skills: "Capacidades principales", projects: "Trabajo seleccionado" },
+    },
+    footer: { title: "Carlos Díaz", subtitle: "Ingeniero de Software · Backend · Cloud · Sistemas Distribuidos", backToTop: "Volver arriba ↑", contact: "Contacto", resume: "CV" },
     eventra: {
       pageTitle: "Caso de estudio Eventra | Carlos Díaz — Ingeniero de Software",
+      metaDescription: "Caso de estudio Eventra: telemetría Windows privacy-first con agente nativo C++, API Go, PostgreSQL, SvelteKit y despliegue cloud.",
       tier: "Caso de estudio principal",
       category: "Ingeniería de sistemas · telemetría privacy-first",
       subtitle: "Una plataforma Windows + cloud construida alrededor de sesiones explícitas, mínima recolección de datos y entrega transparente.",

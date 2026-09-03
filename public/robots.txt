@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://carlosdiazec.com/sitemap.xml

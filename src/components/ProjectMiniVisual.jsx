@@ -106,8 +106,62 @@ function CeryntVisual({ expanded = false }) {
   );
 }
 
+
+function RouteFastVisual({ expanded = false }) {
+  const stops = [
+    { x: 18, y: 72, label: "1" },
+    { x: 40, y: 58, label: "2" },
+    { x: 63, y: 35, label: "3" },
+    { x: 82, y: 22, label: "4" },
+  ];
+
+  return (
+    <div className={`product-mini-visual routefast-mini ${expanded ? "is-expanded" : ""}`}>
+      <WindowBar mark="RF" label="RouteFast" badge="Operations console" />
+      <div className="routefast-mini-body">
+        <div className="routefast-mini-sidebar">
+          <span className="is-active"><Icon name="chart" size={15} /> Overview</span>
+          <span><Icon name="layers" size={15} /> Orders</span>
+          <span><Icon name="user" size={15} /> Fleet</span>
+          <span><Icon name="monitor" size={15} /> Tracking</span>
+          <span><Icon name="architecture" size={15} /> Dispatch</span>
+        </div>
+        <div className="routefast-mini-main">
+          <div className="routefast-mini-stats">
+            <article><small>ACTIVE ORDERS</small><strong>24</strong><span>dispatch lifecycle</span></article>
+            <article><small>DRIVERS READY</small><strong>7</strong><span>capacity aware</span></article>
+            <article><small>HTTP ERRORS</small><strong>0%</strong><span>latest stress run</span></article>
+          </div>
+          <div className="routefast-mini-grid">
+            <article className="routefast-map-card">
+              <div className="routefast-map-top"><strong>Live route</strong><span>ETA 15 min</span></div>
+              <div className="routefast-map-canvas">
+                <svg viewBox="0 0 100 85" preserveAspectRatio="none" aria-hidden="true">
+                  <path className="routefast-road road-a" d="M0 67 C25 58 33 74 52 62 S77 40 100 45" />
+                  <path className="routefast-road road-b" d="M14 0 C22 22 26 34 41 47 S68 63 92 84" />
+                  <path className="routefast-route" d="M18 72 C26 66 34 64 40 58 C51 49 56 43 63 35 C70 29 77 25 82 22" />
+                </svg>
+                {stops.map((stop) => <i key={stop.label} style={{ left: `${stop.x}%`, top: `${stop.y}%` }}>{stop.label}</i>)}
+                <span className="routefast-driver-dot" />
+              </div>
+              <div className="routefast-map-legend"><span>driver</span><span>pickup</span><span>dropoff</span></div>
+            </article>
+            <article className="routefast-dispatch-card">
+              <div><small>DISPATCH DECISION</small><strong>geo-score-v1</strong></div>
+              <div className="routefast-candidate is-selected"><b>01</b><span><strong>Driver 6dcb2449</strong><small>2.3 km · ETA 7 min</small></span><em>100</em></div>
+              <div className="routefast-candidate"><b>02</b><span><strong>Driver 16eba34f</strong><small>4.1 km · ETA 12 min</small></span><em>61</em></div>
+              <div className="routefast-signal"><span>RabbitMQ</span><span>Redis GEO</span><span>PostGIS</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ProjectMiniVisual({ type, expanded = false }) {
   if (type === "qrflow") return <QRFlowVisual expanded={expanded} />;
   if (type === "cerynt") return <CeryntVisual expanded={expanded} />;
+  if (type === "routefast") return <RouteFastVisual expanded={expanded} />;
   return null;
 }

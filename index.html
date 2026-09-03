@@ -5,16 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0d0c" />
     <meta name="color-scheme" content="dark light" />
-    <meta name="description" content="Carlos Díaz is a Software Engineer focused on backend systems, cloud platforms, full-stack products, data and production engineering." />
-    <meta name="keywords" content="Software Engineer, Backend Developer, Cloud Engineer, Full Stack Developer, .NET, Node.js, Go, AWS, React, TypeScript, Ecuador" />
+    <meta name="description" content="Carlos Díaz is a software engineer with 9+ years of experience across backend systems, cloud delivery, financial software, distributed systems and production engineering." />
+    <meta name="keywords" content="Carlos Díaz, Software Engineer, Backend Engineer, Cloud Engineer, Distributed Systems, .NET, NestJS, Node.js, Go, AWS, PostgreSQL, Docker, Ecuador" />
     <meta name="author" content="Carlos Díaz" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Carlos Díaz | Software Engineer · Backend · Cloud · Product" />
-    <meta property="og:description" content="Backend systems, cloud-native products and full-stack engineering — from architecture to production." />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Carlos Díaz · Software Engineer" />
+    <meta property="og:url" content="https://carlosdiazec.com/en" />
+    <meta property="og:title" content="Carlos Díaz | Software Engineer · Backend · Cloud · Distributed Systems" />
+    <meta property="og:description" content="9+ years building backend systems, cloud delivery, financial software and distributed systems — from architecture to production." />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_EC" />
+    <meta property="og:image" content="https://carlosdiazec.com/og/portfolio.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Carlos Díaz · Software Engineer · Backend · Cloud · Distributed Systems" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Carlos Díaz | Software Engineer" />
-    <meta name="twitter:description" content="Backend systems, cloud-native products and full-stack engineering — from architecture to production." />
+    <meta name="twitter:description" content="9+ years building backend systems, cloud delivery, financial software and distributed systems — from architecture to production." />
+    <meta name="twitter:image" content="https://carlosdiazec.com/og/portfolio.png" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <script>
       (() => {
@@ -24,15 +32,53 @@
         document.documentElement.style.background = theme === "light" ? "#f5f2eb" : "#0a0d0c";
       })();
     </script>
-    <title>Carlos Díaz | Software Engineer · Backend · Cloud · Product</title>
+    <title>Carlos Díaz | Software Engineer · Backend · Cloud · Distributed Systems</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Carlos Díaz",
-        "jobTitle": "Software Engineer",
-        "sameAs": ["https://github.com/JoelDiaz93"],
-        "knowsAbout": ["Backend Engineering", "Cloud Computing", "Full Stack Development", "Microservices", "AWS", ".NET", "Node.js", "Go", "React", "TypeScript", "Data Engineering"]
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://carlosdiazec.com/#person",
+            "name": "Carlos Díaz",
+            "url": "https://carlosdiazec.com",
+            "image": "https://carlosdiazec.com/og/portfolio.png",
+            "jobTitle": "Software Engineer",
+            "sameAs": [
+              "https://github.com/JoelDiaz93",
+              "https://www.linkedin.com/in/cjoeldiaz/"
+            ],
+            "knowsAbout": [
+              "Backend Engineering",
+              "Distributed Systems",
+              "Cloud Computing",
+              "Financial Software",
+              "Microservices",
+              "AWS",
+              ".NET",
+              "NestJS",
+              "Node.js",
+              "Go",
+              "PostgreSQL",
+              "Docker"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://carlosdiazec.com/#website",
+            "url": "https://carlosdiazec.com/",
+            "name": "Carlos Díaz · Software Engineer",
+            "inLanguage": ["en", "es"],
+            "publisher": { "@id": "https://carlosdiazec.com/#person" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://carlosdiazec.com/#profile",
+            "url": "https://carlosdiazec.com/",
+            "mainEntity": { "@id": "https://carlosdiazec.com/#person" },
+            "isPartOf": { "@id": "https://carlosdiazec.com/#website" }
+          }
+        ]
       }
     </script>
   </head>

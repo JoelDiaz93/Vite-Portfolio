@@ -7,7 +7,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Contact() {
   const { language } = useSite();
-  const { contact } = useMemo(() => siteContent[language], [language]);
+  const { contact, resume } = useMemo(() => siteContent[language], [language]);
   const [formData, setFormData] = useState({ name: "", email: "", intent: contact.labels.options[0], message: "" });
   const [state, setState] = useState("idle");
 
@@ -47,6 +47,11 @@ export default function Contact() {
                 <div><strong>{item.title}</strong><p>{item.text}</p></div>
               </div>
             ))}
+            <div className="contact-profile-links" aria-label={language === "es" ? "Perfiles profesionales" : "Professional profiles"}>
+              <a href="https://www.linkedin.com/in/cjoeldiaz/" target="_blank" rel="noreferrer"><Icon name="linkedin" /> LinkedIn <Icon name="external" size={15} /></a>
+              <a href="https://github.com/JoelDiaz93" target="_blank" rel="noreferrer"><Icon name="github" /> GitHub <Icon name="external" size={15} /></a>
+              <a href={resume.currentDownload} target="_blank" rel="noreferrer"><Icon name="download" /> {language === "es" ? "CV" : "Resume"} <Icon name="external" size={15} /></a>
+            </div>
           </div>
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
